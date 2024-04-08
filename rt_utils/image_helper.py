@@ -1,5 +1,5 @@
 import os
-from typing import List
+from typing import List, Union
 from enum import IntEnum
 
 import cv2 as cv
@@ -11,7 +11,7 @@ from pydicom.sequence import Sequence
 from rt_utils.utils import ROIData
 
 
-def load_sorted_image_series(dicom_series_path: str | List[Dataset]) -> List[Dataset]:
+def load_sorted_image_series(dicom_series_path: Union[str, List[Dataset]]) -> List[Dataset]:
     """
     File contains helper methods for loading / formatting DICOM images and contours
     """

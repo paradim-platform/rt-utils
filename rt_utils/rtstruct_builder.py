@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Union
 from pydicom.dataset import Dataset
 from pydicom.filereader import dcmread
 
@@ -15,7 +15,7 @@ class RTStructBuilder:
     """
 
     @staticmethod
-    def create_new(dicom_series_path: str | List[Dataset]) -> RTStruct:
+    def create_new(dicom_series_path: Union[str, List[Dataset]]) -> RTStruct:
         """
         Method to generate a new rt struct from a DICOM series
         """
@@ -25,7 +25,7 @@ class RTStructBuilder:
         return RTStruct(series_data, ds)
 
     @staticmethod
-    def create_from(dicom_series_path: str | List[Dataset], rt_struct_path: str, warn_only: bool = False) -> RTStruct:
+    def create_from(dicom_series_path: Union[str, List[Dataset]], rt_struct_path: str, warn_only: bool = False) -> RTStruct:
         """
         Method to load an existing rt struct, given related DICOM series and existing rt struct
         """
