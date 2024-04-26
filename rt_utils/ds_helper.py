@@ -76,17 +76,18 @@ def add_sequence_lists_to_ds(ds: FileDataset):
 
 
 def add_study_and_series_information(ds: FileDataset, series_data):
+    current_date = datetime.datetime.now()
     reference_ds = series_data[0]  # All elements in series should have the same data
     ds.StudyDate = reference_ds.StudyDate
-    ds.SeriesDate = getattr(reference_ds, "SeriesDate", "")
+    ds.SeriesDate = current_date.strftime("%Y%m%d")
     ds.StudyTime = reference_ds.StudyTime
-    ds.SeriesTime = getattr(reference_ds, "SeriesTime", "")
+    ds.SeriesTime = current_date.strftime("%H%M%S.%f")
     ds.StudyDescription = getattr(reference_ds, "StudyDescription", "")
-    ds.SeriesDescription = getattr(reference_ds, "SeriesDescription", "")
+    ds.SeriesDescription = f"Structures for CT SeriesInstanceUID={reference_ds.SeriesInstanceUID}"
     ds.StudyInstanceUID = reference_ds.StudyInstanceUID
     ds.SeriesInstanceUID = generate_uid()  # TODO: find out if random generation is ok
     ds.StudyID = reference_ds.StudyID
-    ds.SeriesNumber = "1"  # TODO: find out if we can just use 1 (Should be fine since its a new series)
+    ds.SeriesNumber = ""  # TODO: find out if we can just use 1 (Should be fine since its a new series)
 
 
 def add_patient_information(ds: FileDataset, series_data):
