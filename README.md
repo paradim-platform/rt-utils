@@ -9,10 +9,14 @@
     <img src="https://img.shields.io/pypi/pyversions/rt-utils" alt="Python version" height="18">
     <a href="https://pypi.org/project/rt-utils"><img src="https://badge.fury.io/py/rt-utils.svg" alt="PyPI version" height="18"></a>  
     <img alt="PyPI - License" src="https://img.shields.io/github/license/qurit/rt-utils?color=g" height="18" />
+  
 </p>
  
 ---
- 
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14902966.svg)](https://doi.org/10.5281/zenodo.14902966)
+
+
 RT-Utils is motivated to allow physicians and other users to view the results of segmentation performed on a series of DICOM images. RT-Utils allows you to create or load RT Structs, extract 3d masks from RT Struct ROIs, easily add one or more regions of interest, and save the resulting RT Struct in just a few lines!
 You can also use the RT-Utils for merging two existing RT Structs to one file.
 
@@ -25,13 +29,20 @@ The format for the ROI mask is an nd numpy array of type bool. It is an array of
 ```
 pip install rt_utils
 ```
-
+##
+**libGL**  
+   libGL is a required system dependency. Install it on Linux using:
+   ```
+   ```bash
+   sudo apt install libgl1
+```
 ## Installation in editable mode
 ```
 git clone https://github.com/qurit/rt-utils.git
 cd rt-utils
 pip install -e .
 ```
+
 
 ## Creating new RT Structs
 ```Python
@@ -168,5 +179,27 @@ The add_roi method of our RTStruct class has a multitude of optional parameters 
 - <b>approximate_contours</b>: A boolean value that defaults to True which defines whether or not approximations are made when extracting contours from the input mask. Setting this to false will lead to much larger contour data within your RT Struct so only use this if as much precision as possible is required.
 - <b>roi_generation_algorithm</b>: An enum value that defaults to 0 which defines what ROI generation algorithm will be used. 0=\'AUTOMATIC\', 1=\'SEMIAUTOMATIC\', or 2=\'MANUAL\'.
 
-#To be added
-nifti to rtstruct
+## 🚀 New features
+- nifti to rtstruct conversion has been added.
+- conversion from DICOM to NIFTI for PET and corresponding RT-struct file has been added as an example usage with no issues of shift or mismatch between the masks.
+
+## Examples
+You can find the comparison between RT-utils and other conversion techniques in this public repository: https://github.com/qurit/dicom_nifti_conversion_project 
+
+## Examples
+You can find the comparison between RT-utils and other conversion techniques in this public repository: https://github.com/qurit/dicom_nifti_conversion_project.
+
+The real-world example in the JOSS paper under review was generated using the code provided in the [RTUTILS_read_world_example_for_PET.ipynb](https://github.com/qurit/rt-utils/blob/development/RTUTILS_read_world_example_for_PET.ipynb).
+
+## Contributing
+We welcome contributions to this project! Please review our [CONTRIBUTING guidelines](./CONTRIBUTING.md) for more details.
+
+
+## How to Cite
+
+If you are incorporating RT-Utils into your projects, kindly include the following citation:
+
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.07361/status.svg)](https://doi.org/10.21105/joss.07361)
+
+Read the full paper: Asim Shrestha, Adam Watkins, Fereshteh Yousefirizi, Arman Rahmim, and Carlos Uribe [RT-utils: A Minimal Python Library for RT-struct Manipulation](https://joss.theoj.org/papers/10.21105/joss.07361)
+
